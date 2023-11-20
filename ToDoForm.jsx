@@ -3,14 +3,12 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 
-function ToDoForm({ onAddTask }) {
-  const [newTask, setNewTask] = useState('');
+function ToDoForm({ addTask }) {
+  const [taskText, setTaskText] = useState('');
 
   const handleAddTask = () => {
-    if (newTask.trim() !== '') {
-      onAddTask(newTask);
-      setNewTask('');
-    }
+    addTask(taskText);
+    setTaskText('');
   };
 
   return (
@@ -18,10 +16,10 @@ function ToDoForm({ onAddTask }) {
       <TextInput
         style={styles.input}
         placeholder="Add a new task..."
-        value={newTask}
-        onChangeText={(text) => setNewTask(text)}
+        value={taskText}
+        onChangeText={setTaskText}
       />
-      <Button title="Add" onPress={handleAddTask} />
+      <Button title="Add Task" onPress={handleAddTask} />
     </View>
   );
 }
